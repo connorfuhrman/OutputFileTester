@@ -59,7 +59,7 @@ class ProgramTester:
         lines = []
         for l in output.splitlines():
             if len(l) != 0:
-                lines.append(l)
+                lines.append(l.strip()) # Remove leading and trailing whitespace
         return lines
         
     def read_output_file(self, filename):
