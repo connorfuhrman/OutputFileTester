@@ -110,3 +110,16 @@ class ProgramTester:
         # Execute the program
         out = self.execute_program(self.get_command_arguments(solution_filename))
         return self.compare_output(out, self.read_output_file("solution/{}".format(solution_filename)))
+        
+    def test_program_outputFiles(self, i):
+        # Get the command line arguments from ./solution/command_arguments.txt
+        with open("solution/command_arguments.txt") as f:
+            # Get the ith line of the file
+            lines = f.readlines()
+            l = re.sub("[\(\[].*?[\)\]]", "", lines[i]).strip()
+        # Execute the student's program with the given command line arguments
+        out = self.execute_program(l.format("studentOutput/", i))
+        # Compare between the two files
+        studentOut = self.read_output_file("studentOutput/output_{}.txt".format(i))
+        solutionOut = self.read_output_file("solution/output_{}.txt".format(i))
+        return self.compare_output(studentOut, solutionOut)
