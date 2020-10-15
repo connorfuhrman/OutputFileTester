@@ -129,6 +129,7 @@ class ProgramTester:
         return ''.join(saved_chars)
         
     def test_program_outputFiles(self, i):
+        print("Hello I am working")
         # Get the command line arguments from ./solution/command_arguments.txt
         with open("solution/command_arguments.txt") as f:
             # Get the ith line of the file
