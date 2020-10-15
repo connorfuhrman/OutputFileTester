@@ -45,7 +45,7 @@ class ProgramTester:
         rc = process.returncode
         if rc != 0:
             print("Compiliation failed! Exiting")
-            pytest.exit("Exiting tests as compilation has failed")
+            pytest.exit("Exiting tests as compilation has failed", 999)
         # Move back to the working dir
         os.chdir("../")
         
