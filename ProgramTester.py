@@ -23,7 +23,7 @@ class ProgramTester:
             os.mkdir(self.test_build_dir)
         # Move to the directory we just created
         os.chdir(self.test_build_dir)
-        command = 'cmake ../..'
+        command = 'cmake ../.. -DENABLE_TESTING=1' # Add testing flag
         print("Executing the cmake command to generate build files:")
         process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
