@@ -129,13 +129,11 @@ class ProgramTester:
         return ''.join(saved_chars)
         
     def test_program_outputFiles(self, i):
-        print("Hello I am working")
         # Get the command line arguments from ./solution/command_arguments.txt
         with open("solution/command_arguments.txt") as f:
             # Get the ith line of the file
             lines = f.readlines()
             l = self.remove_text_inside_brackets(lines[i]).strip()
-            print(l)
         # Execute the student's program with the given command line arguments
         out = self.execute_program(l.format("student_", i))
         # Compare between the two files
