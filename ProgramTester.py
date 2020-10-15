@@ -28,7 +28,7 @@ class ProgramTester:
         process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
         if error == None:
-            print("CMake command executed correctly with the following output:")
+            print("CMake output:")
             print(output.decode("utf-8") )
         else:
             print("CMake encountered the following error\n {}\n\nContact the instructor.".format(error.decode("utf-8") ))
@@ -37,10 +37,15 @@ class ProgramTester:
         process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
         if error == None:
-            print("Build executed correctly with the following output:")
+            print("Build output:")
             print(output.decode("utf-8") )
         else:
             print("Build encountered the following error: {}.".format(error.decode("utf-8")))
+        # Get the return code
+        rc = process.returncode
+        if rc != 0:
+            print("Compiliation failed! Exiting")
+            pytest.exit("Exiting tests as compilation has failed")
         # Move back to the working dir
         os.chdir("../")
         
