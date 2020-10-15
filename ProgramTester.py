@@ -137,8 +137,8 @@ class ProgramTester:
             l = self.remove_text_inside_brackets(lines[i]).strip()
             print(l)
         # Execute the student's program with the given command line arguments
-        out = self.execute_program(l.format("studentOutput/", i))
+        out = self.execute_program(l.format("student_", i))
         # Compare between the two files
-        studentOut = self.read_output_file("studentOutput/output_{}.txt".format(i))
+        studentOut = self.read_output_file("student_output_{}.txt".format(i))
         solutionOut = self.read_output_file("solution/output_{}.txt".format(i))
         return self.compare_output(studentOut, solutionOut)
