@@ -96,25 +96,28 @@ class ProgramTester:
             args = re.sub("# Command arguments: ", '', line)
         return args
             
-    def compare_output(self, program_out, solution_out):
+    def compare_output(self, program_out, solution_out, print_diff):
         d = difflib.Differ()
         result = list(d.compare(program_out, solution_out))
         matches_solution = True
-        for r in result: # Loop through the comparisons
+        for i, r in enumerate(result): # Loop through the comparisons
             if not r[0] == " ":
+                if not print_diff:
+                    print("Found error on line {}\n".format(i))
                 matches_solution = False
         if not matches_solution:
             print("[F] Your program does not match the solution!! See below:")
-            for r in result:
-                print(r)
+            if print_diff:
+                for r in result:
+                    print(r)
         else:
             print("[S] Your program matches the solution!!")
         return matches_solution 
         
-    def test_program(self, solution_filename):
+    def test_program(self, solution_filename, print_diff = True):
         # Execute the program
         out = self.execute_program(self.get_command_arguments(solution_filename))
-        return self.compare_output(out, self.read_output_file("solution/{}".format(solution_filename)))
+        return self.compare_output(out, self.read_output_file("solution/{}".format(solution_filename)), print_diff)
         
     def remove_text_inside_brackets(self, text, brackets="()[]"):
         count = [0] * (len(brackets) // 2) # count open/close brackets
@@ -133,7 +136,7 @@ class ProgramTester:
                     saved_chars.append(character)
         return ''.join(saved_chars)
         
-    def test_program_outputFiles(self, i):
+    def test_program_outputFiles(self, i, print_diff = True):
         # Get the command line arguments from ./solution/command_arguments.txt
         with open("solution/command_arguments.txt") as f:
             # Get the ith line of the file
@@ -144,4 +147,4 @@ class ProgramTester:
         # Compare between the two files
         studentOut = self.read_output_file("student_output_{}.txt".format(i))
         solutionOut = self.read_output_file("solution/output_{}.txt".format(i))
-        return self.compare_output(studentOut, solutionOut)
+        return self.compare_output(studentOut, solutionOut, print_diff)
