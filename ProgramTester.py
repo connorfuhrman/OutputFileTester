@@ -103,10 +103,10 @@ class ProgramTester:
         for i, r in enumerate(result): # Loop through the comparisons
             if not r[0] == " ":
                 if not print_diff:
-                    print("Found error on line {}\n".format(i))
+                    print("Found error on line {}".format(i))
                 matches_solution = False
         if not matches_solution:
-            print("[F] Your program does not match the solution!! See below:")
+            print("[F] Your program does not match the solution!!")
             if print_diff:
                 for r in result:
                     print(r)
