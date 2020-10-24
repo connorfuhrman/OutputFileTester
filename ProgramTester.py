@@ -78,10 +78,8 @@ class ProgramTester:
             lines = []
             # Don't keep the lines that start with a comment
             for l in lines_tmp:
-                # Strip leading and lagging whitespace
-                l.strip()
                 try:
-                    if l[0] != "#": lines.append(l)
+                    if l[0] != "#": lines.append(l.strip())
                 except: # Then l is a newline character and we don't really care about those.
                     pass 
         return lines
