@@ -1,0 +1,8 @@
+README.md
+setup.py
+OutputFileTester/ProgramTester.py
+OutputFileTester/__init__.py
+example_pkg_connorfuhrman.egg-info/PKG-INFO
+example_pkg_connorfuhrman.egg-info/SOURCES.txt
+example_pkg_connorfuhrman.egg-info/dependency_links.txt
+example_pkg_connorfuhrman.egg-info/top_level.txt

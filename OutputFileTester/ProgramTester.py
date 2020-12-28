@@ -1,4 +1,5 @@
-# Defines a class to test a program for ECE 275
+# Defines a class to test a program's output file(s) for ECE 275 @ The University of Arizona
+# with optional functionality to compile the program
 
 import os, shutil, subprocess, difflib, re
 from pprint import pprint
