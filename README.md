@@ -1,5 +1,5 @@
-# Example Package
+# UArizona ECE 275 Output File Tester
 
-This is a simple example package. You can use
-[Github-flavored Markdown](https://guides.github.com/features/mastering-markdown/)
-to write your content.
+This package is used to compare output files for ECE 275 at The University of Arizona.
+The package really should not be used by anyone else as functionality is not very general and there is no documentation. 
+Package placed on PyPI for easy student (and Docker container) install only! 

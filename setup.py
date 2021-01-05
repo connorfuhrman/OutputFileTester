@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="example-pkg-connorfuhrman", # Replace with your own username
+    name="uarizona-ece275-outputfileTester", # Replace with your own username
     version="0.0.1",
     author="Connor Fuhrman",
     author_email="connorfuhrman@email.arizona.edu",

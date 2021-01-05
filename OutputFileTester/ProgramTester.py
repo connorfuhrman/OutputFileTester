@@ -1,17 +1,36 @@
 # Defines a class to test a program's output file(s) for ECE 275 @ The University of Arizona
-# with optional functionality to compile the program
+# This is used in conjunction with CMake or other build system, i.e., that the executable exists
 
 import os, shutil, subprocess, difflib, re
 from pprint import pprint
-import pytest
 
 
 class ProgramTester:
     def __init__(self, executable_name):
         # Set the object member variables
-        self.test_build_dir = "testingBuild"
+        self.test_build_dir = "build"
         self.solution_dir = "solution"
         self.executable_name = "src/" + executable_name
+        
+    def make_solutionFiles(self, capture_stdout=True):
+    	''' Reads in the command line arguments for each execution and generates
+    	the appropriate solution output files from the solution executable.
+    	File containing the command line arguments must be COMMANDARGS.txt and should be
+    	in the current working directory. 
+    	Each line of COMMANDARGS.txt should be a command argument coming after the executable name. 
+    	
+    	The default argument of capture_stdout says to redirect standard out to the solution file rather
+    	than have the executable program produce the correct output file.'''
+    	
+    	i = 0 # Count number of output files
+    	with open("COMMANDARGS.txt") as f:
+    		args = f.readline()
+    		output = self.execute_program(args)
+    		with open("/solutionFiles/sol_{}.txt".format(i), 'w') as s:
+    			s.write("# Solution file. '#' denotes a comment, i.e., not part of the solution")
+    			s.write("# Command arguments used to generate this output: {}".format(args))
+    			s.write([l for l in output])
+    	
         
     def build_program(self):    
         try:
